@@ -18,4 +18,11 @@ variable "azs" {
    type = list(string)
    default = ["us-east-1a","us-east-1b"]
 }
-
+variable "versioning" {
+    type        = bool
+    default     = true
+}
+variable "acl" {
+    type        = string
+    default     = "private"
+}

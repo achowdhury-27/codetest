@@ -1,5 +1,5 @@
 	provider "aws" {
-	  region 	= "us-east-1"
+	  region 	= module.vpc.var.region
 	}
 	
 	module "vpc" {
@@ -207,3 +207,27 @@
         Environment = "xlrt-rds"
       }
     }
+    resource "aws_s3_bucket" "challange-1" {
+	  acl = module.vpc.var.acl
+  
+      versioning {
+        enabled = module.vpc.var.versioning
+     }
+  
+     tags = {
+	   Name = "challange-1"
+	 }
+    }
+	resorce "aws_dynamodb_table" "challenge1" {
+	  name = "challenge1"
+      region = module.vpc.var.region
+      hash_key = "challenge1"
+      attribute = {
+        name    = "chanllenge1"
+        type    = "S"
+      }
+      tags      = {
+        name    = "challenge"
+      }
+    }
+	
